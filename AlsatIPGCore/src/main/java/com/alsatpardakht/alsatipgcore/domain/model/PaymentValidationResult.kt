@@ -5,6 +5,6 @@ import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentValidationRespons
 data class PaymentValidationResult(
     val isLoading: Boolean = false,
     val isSuccessful: Boolean = false,
-    val error: Throwable? = null,
+    val error: Exception? = null,
     val data: PaymentValidationResponse? = null
 )
