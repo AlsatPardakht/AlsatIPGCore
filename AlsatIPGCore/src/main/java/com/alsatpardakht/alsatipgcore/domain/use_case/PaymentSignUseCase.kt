@@ -42,6 +42,6 @@ class PaymentSignUseCase(
     }
 
     private fun error(message: String) = flow {
-        emit(Resource.Error<PaymentSignResponse>(Throwable(message)))
+        emit(Resource.Error<PaymentSignResponse>(Exception(message)))
     }
 }

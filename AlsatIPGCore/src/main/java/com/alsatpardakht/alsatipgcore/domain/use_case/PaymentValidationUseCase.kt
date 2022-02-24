@@ -33,6 +33,6 @@ class PaymentValidationUseCase(
     }
 
     private fun error(message: String) = flow {
-        emit(Resource.Error<PaymentValidationResponse>(Throwable(message)))
+        emit(Resource.Error<PaymentValidationResponse>(Exception(message)))
     }
 }

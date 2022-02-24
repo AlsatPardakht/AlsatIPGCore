@@ -24,18 +24,18 @@ class IPGRepositoryImpl(
                         iPGService.signVaset(paymentSignRequest)
                     }
                     else -> {
-                        emit(Resource.Error(Throwable("payment sign request type is not valid")))
+                        emit(Resource.Error(Exception("payment sign request type is not valid")))
                         return@flow
                     }
                 }
-            } catch (throwable: Throwable) {
-                emit(Resource.Error(throwable))
+            } catch (exception: Exception) {
+                emit(Resource.Error(exception))
                 return@flow
             }
             if (result.Sign == null || result.Sign.isEmpty() || result.Token == null || result.Token.isEmpty()) {
                 emit(
                     Resource.Error(
-                        Throwable("payment not successful! sign or token is null"),
+                        Exception("payment not successful! sign or token is null"),
                         result
                     )
                 )
@@ -49,18 +49,18 @@ class IPGRepositoryImpl(
             emit(Resource.Loading)
             val resultJson = try {
                 iPGService.validationMostaghim(paymentValidationRequest)
-            } catch (throwable: Throwable) {
-                emit(Resource.Error(throwable))
+            } catch (exception: Exception) {
+                emit(Resource.Error(exception))
                 return@flow
             }
             if (resultJson == null || resultJson.isEmpty() || resultJson.length < 20) {
-                emit(Resource.Error(Throwable("payment not valid!")))
+                emit(Resource.Error(Exception("payment not valid!")))
                 return@flow
             }
             val result = try {
                 resultJson.toPaymentValidationResponse()
-            } catch (throwable: Throwable) {
-                emit(Resource.Error(throwable))
+            } catch (exception: Exception) {
+                emit(Resource.Error(exception))
                 return@flow
             }
             emit(Resource.Success(result))
