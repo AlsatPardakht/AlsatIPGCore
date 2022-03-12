@@ -50,6 +50,7 @@ class IPGServiceImpl(
         client.submitForm<PaymentValidationResponse>(
             url = VALIDATION_VASET_ROUTE,
             formParameters = Parameters.build {
+                append("Api", paymentValidationRequest.Api)
                 append("tref", paymentValidationRequest.tref)
                 append("iD", paymentValidationRequest.iD)
                 append("iN", paymentValidationRequest.iN)

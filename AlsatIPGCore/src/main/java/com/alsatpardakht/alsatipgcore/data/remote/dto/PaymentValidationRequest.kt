@@ -7,5 +7,5 @@ data class PaymentValidationRequest(
     var iN: String,
     var iD: String,
     var Api: String = "",
-    var Type: PaymentType = PaymentType.Mostaghim
+    var Type: PaymentType
 )

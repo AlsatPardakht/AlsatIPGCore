@@ -14,8 +14,8 @@ class PaymentValidationUseCase(
         tref: String?,
         iN: String?,
         iD: String?,
-        Api: String = "",
-        Type: PaymentType = PaymentType.Mostaghim
+        Api: String,
+        Type: PaymentType
     ): Flow<Resource<PaymentValidation>> {
         return when {
             Type == PaymentType.Mostaghim && Api.isEmpty() -> error(

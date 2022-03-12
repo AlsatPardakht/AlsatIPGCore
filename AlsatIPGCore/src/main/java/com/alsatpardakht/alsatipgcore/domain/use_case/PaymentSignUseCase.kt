@@ -19,8 +19,8 @@ class PaymentSignUseCase(
         Api: String,
         InvoiceNumber: String,
         RedirectAddress: String,
-        Type: PaymentType = PaymentType.Mostaghim,
-        Tashim: List<TashimModel> = emptyList()
+        Type: PaymentType,
+        Tashim: List<TashimModel>
     ): Flow<Resource<PaymentSign>> {
         return when {
             Type == PaymentType.Vaset && Amount < MIN_PAYMENT_AMOUNT_VASET -> error(
