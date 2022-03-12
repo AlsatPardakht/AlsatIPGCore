@@ -1,8 +1,5 @@
-package com.alsatpardakht.alsatipgcore.data.remote.model
+package com.alsatpardakht.alsatipgcore.domain.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class PSP(
     val Amount: Int,
     val InvoiceDate: String,

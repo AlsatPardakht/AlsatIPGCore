@@ -1,4 +1,4 @@
-package com.alsatpardakht.alsatipgcore.data.remote.model
+package com.alsatpardakht.alsatipgcore.domain.model
 
 import kotlinx.serialization.Serializable
 

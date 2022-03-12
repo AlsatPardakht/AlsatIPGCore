@@ -1,8 +1,8 @@
 package com.alsatpardakht.alsatipgcore.domain.use_case
 
 import com.alsatpardakht.alsatipgcore.core.util.Resource
-import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentValidationRequest
-import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentValidationResponse
+import com.alsatpardakht.alsatipgcore.domain.model.PaymentType
+import com.alsatpardakht.alsatipgcore.domain.model.PaymentValidation
 import com.alsatpardakht.alsatipgcore.domain.repository.IPGRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -10,29 +10,35 @@ import kotlinx.coroutines.flow.flow
 class PaymentValidationUseCase(
     private val iPGRepository: IPGRepository
 ) {
-    fun execute(paymentValidationRequest: PaymentValidationRequest): Flow<Resource<PaymentValidationResponse>> {
+    fun execute(
+        tref: String?,
+        iN: String?,
+        iD: String?,
+        Api: String = "",
+        Type: PaymentType = PaymentType.Mostaghim
+    ): Flow<Resource<PaymentValidation>> {
         return when {
-            paymentValidationRequest.Api.isEmpty() -> error(
-                "error in PaymentValidationRequest.Api value ! \n" +
+            Type == PaymentType.Mostaghim && Api.isEmpty() -> error(
+                "error in Api value ! \n" +
+                        "this field should not be empty in paymentType " + PaymentType.Mostaghim
+            )
+            iD == null || iD.isEmpty() -> error(
+                "error in iD value ! \n" +
                         "this field should not be empty"
             )
-            paymentValidationRequest.iD == null || paymentValidationRequest.iD?.isEmpty() ?: true -> error(
-                "error in PaymentValidationRequest.iD value ! \n" +
+            iN == null || iN.isEmpty() -> error(
+                "error in iN value ! \n" +
                         "this field should not be empty"
             )
-            paymentValidationRequest.iN == null || paymentValidationRequest.iN?.isEmpty() ?: true -> error(
-                "error in PaymentValidationRequest.iN value ! \n" +
+            tref == null || tref.isEmpty() -> error(
+                "error in tref value ! \n" +
                         "this field should not be empty"
             )
-            paymentValidationRequest.tref == null || paymentValidationRequest.tref?.isEmpty() ?: true -> error(
-                "error in PaymentValidationRequest.tref value ! \n" +
-                        "this field should not be empty"
-            )
-            else -> iPGRepository.validation(paymentValidationRequest)
+            else -> iPGRepository.validation(tref, iN, iD, Api, Type)
         }
     }
 
     private fun error(message: String) = flow {
-        emit(Resource.Error<PaymentValidationResponse>(Exception(message)))
+        emit(Resource.Error<PaymentValidation>(Exception(message)))
     }
 }

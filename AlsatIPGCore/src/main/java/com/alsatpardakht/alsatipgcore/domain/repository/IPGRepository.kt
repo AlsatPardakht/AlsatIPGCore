@@ -1,13 +1,27 @@
 package com.alsatpardakht.alsatipgcore.domain.repository
 
 import com.alsatpardakht.alsatipgcore.core.util.Resource
-import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentSignRequest
-import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentValidationRequest
-import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentValidationResponse
-import com.alsatpardakht.alsatipgcore.data.remote.model.PaymentSignResponse
+import com.alsatpardakht.alsatipgcore.domain.model.PaymentType
+import com.alsatpardakht.alsatipgcore.domain.model.PaymentSign
+import com.alsatpardakht.alsatipgcore.domain.model.PaymentValidation
+import com.alsatpardakht.alsatipgcore.domain.model.TashimModel
 import kotlinx.coroutines.flow.Flow
 
 interface IPGRepository {
-    fun sign(paymentSignRequest: PaymentSignRequest): Flow<Resource<PaymentSignResponse>>
-    fun validation(paymentValidationRequest: PaymentValidationRequest): Flow<Resource<PaymentValidationResponse>>
+    fun sign(
+        Api: String,
+        Amount: String,
+        InvoiceNumber: String,
+        RedirectAddress: String,
+        Type: PaymentType,
+        Tashim: List<TashimModel>
+    ): Flow<Resource<PaymentSign>>
+
+    fun validation(
+        tref: String,
+        iN: String,
+        iD: String,
+        Api: String,
+        Type: PaymentType
+    ): Flow<Resource<PaymentValidation>>
 }
