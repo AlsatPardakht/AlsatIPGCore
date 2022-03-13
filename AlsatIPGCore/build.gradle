@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'com.alsatpardakht'
-version '1.2.1'
+version '1.2.2'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_7
@@ -17,12 +17,6 @@ java {
 }
 
 dependencies {
-
-    // Coroutines
-    def coroutines_version = "1.5.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
     // Ktor
     def ktor_version = "1.6.3"
     implementation "io.ktor:ktor-client-core:$ktor_version"
@@ -34,11 +28,11 @@ dependencies {
 }
 
 publishing {
-    publications{
-        mavenJava(MavenPublication){
+    publications {
+        mavenJava(MavenPublication) {
             groupId = 'com.alsatpardakht'
             artifactId = 'alsatipgcore'
-            version = '1.2.1'
+            version = '1.2.2'
             from components.java
 
             pom {
@@ -66,7 +60,7 @@ publishing {
                         email = 'erfan.mh.at@gmail.com'
                     }
                 }
-                
+
                 scm {
                     connection = 'scm:git:git:github.com/AlsatPardakht/AlsatIPGCore'
                     developerConnection = 'scm:git:ssh://github.com/AlsatPardakht/AlsatIPGCore'
@@ -93,7 +87,7 @@ signing {
 }
 
 javadoc {
-    if(JavaVersion.current().isJava9Compatible()) {
+    if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
 }

@@ -46,5 +46,4 @@
 
 - [Kotlin](https://kotlinlang.org/) - programming language
 - [Ktor](https://ktor.io/) - HTTP client
-- [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) - asynchronous & concurrency
 - [kotlinx-serialization-json](https://github.com/Kotlin/kotlinx.serialization) - serialization & deserialization
