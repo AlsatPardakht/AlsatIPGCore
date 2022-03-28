@@ -38,15 +38,15 @@ class PaymentSignUseCase(
                         "The maximum amount payable is $MAX_PAYMENT_AMOUNT" +
                         " You have entered $Amount"
             )
-            Api.isEmpty() -> error(
+            Api.isBlank() -> error(
                 "error in Api value ! \n" +
                         "this field should not be empty"
             )
-            Type == PaymentType.Mostaghim && InvoiceNumber.isEmpty() -> error(
+            Type == PaymentType.Mostaghim && InvoiceNumber.isBlank() -> error(
                 "error in InvoiceNumber value ! \n" +
                         "this field should not be empty"
             )
-            RedirectAddress.isEmpty() -> error(
+            RedirectAddress.isBlank() -> error(
                 "error in RedirectAddress value ! \n" +
                         "this field should not be empty"
             )

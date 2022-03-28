@@ -18,19 +18,19 @@ class PaymentValidationUseCase(
         Type: PaymentType
     ): Flow<Resource<PaymentValidation>> {
         return when {
-            Type == PaymentType.Mostaghim && Api.isEmpty() -> error(
+            Type == PaymentType.Mostaghim && Api.isBlank() -> error(
                 "error in Api value ! \n" +
                         "this field should not be empty in paymentType " + PaymentType.Mostaghim
             )
-            iD == null || iD.isEmpty() -> error(
+            iD == null || iD.isBlank() -> error(
                 "error in iD value ! \n" +
                         "this field should not be empty"
             )
-            iN == null || iN.isEmpty() -> error(
+            iN == null || iN.isBlank() -> error(
                 "error in iN value ! \n" +
                         "this field should not be empty"
             )
-            tref == null || tref.isEmpty() -> error(
+            tref == null || tref.isBlank() -> error(
                 "error in tref value ! \n" +
                         "this field should not be empty"
             )
